@@ -10,9 +10,9 @@ cd python-fastapi-uv-example
 
 clever create -t python
 
-clever env set CC_PRE_BUILD_HOOK "uv sync"
-clever env set CC_RUN_COMMAND ".venv/bin/fastapi run server.py --port 9000 --host 0.0.0.0"
+# If these environment variables and a `uv.lock` file are found, `uv` is used for deployment
+clever env set CC_PYTHON_UV_SYNC_FLAGS -- "--locked --no-progress"
+clever env set CC_PYTHON_UV_RUN_COMMAND ".venv/bin/fastapi run server.py --port 8080 --host 0.0.0.0"
 
-clever deploy && clever open
-
+clever deploy
 ```
